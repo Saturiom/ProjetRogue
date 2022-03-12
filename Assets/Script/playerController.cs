@@ -25,11 +25,10 @@ public class playerController : MonoBehaviour
 
     public static playerController instance;
 
-    private void Awake() 
+    private void Awake()
     {
         instance = this;
     }
-
 
     // Start is called before the first frame update
     void Start()
@@ -37,13 +36,13 @@ public class playerController : MonoBehaviour
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Attack();        
+        Attack();
     }
 
     private void FixedUpdate()
@@ -53,22 +52,22 @@ public class playerController : MonoBehaviour
 
     private void Attack()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            
-            if(Time.time >= attackTime)
+
+            if (Time.time >= attackTime)
             {
                 anim.SetTrigger("attack");
                 attackTime = Time.time + timeBetweenAttack;
             }
-            
-            
+
+
         }
     }
 
     void Move()
     {
-        if(Input.GetAxis("Horizontal") > 0.1 || Input.GetAxis("Horizontal") < -0.1 || Input.GetAxis("Vertical") > 0.1 || Input.GetAxis("Vertical") < -0.1)
+        if (Input.GetAxis("Horizontal") > 0.1 || Input.GetAxis("Horizontal") < -0.1 || Input.GetAxis("Vertical") > 0.1 || Input.GetAxis("Vertical") < -0.1)
         {
             anim.SetFloat("lastInputX", Input.GetAxis("Horizontal"));
             anim.SetFloat("lastInputY", Input.GetAxis("Vertical"));
@@ -76,12 +75,12 @@ public class playerController : MonoBehaviour
 
         float x = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         float y = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        
+
         //retourne toujours 1 ou -1
         rb.velocity = new Vector2(x, y);
         rb.velocity.Normalize();
 
-        if(x != 0 || y != 0)
+        if (x != 0 || y != 0)
         {
             anim.SetFloat("inputX", x);
             anim.SetFloat("inputY", y);
@@ -90,26 +89,26 @@ public class playerController : MonoBehaviour
 
 
         //regarde si il y a un enemy dans la direction
-        if(Input.GetAxis("Horizontal") > 0.1)
+        if (Input.GetAxis("Horizontal") > 0.1)
         {
             checkEnemy.position = new Vector3(transform.position.x + range, transform.position.y);
-            
+
         }
-        else if(Input.GetAxis("Horizontal") < -0.1)
+        else if (Input.GetAxis("Horizontal") < -0.1)
         {
             checkEnemy.position = new Vector3(transform.position.x - range, transform.position.y);
-            
+
         }
 
-        if(Input.GetAxis("Vertical") > 0.1)
+        if (Input.GetAxis("Vertical") > 0.1)
         {
             checkEnemy.position = new Vector3(transform.position.x, transform.position.y + range);
-            
+
         }
-        else if(Input.GetAxis("Vertical") < -0.1)
+        else if (Input.GetAxis("Vertical") < -0.1)
         {
-            checkEnemy.position = new Vector3(transform.position.x, transform.position.y - range );
-            
+            checkEnemy.position = new Vector3(transform.position.x, transform.position.y - range);
+
         }
 
     }
@@ -126,4 +125,6 @@ public class playerController : MonoBehaviour
             //deal dmg 
         }
     }
+
+
 }
