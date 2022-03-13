@@ -7,9 +7,11 @@ public class allPotions : MonoBehaviour
     [Header("Effet")]
     public int effectPotion;
     public float vitesse, heal;
+    [Header("Durée")]
+    public float timeEffect;
 
 
-    public bool TimerStarted = false;
+    private bool TimerStarted = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -37,7 +39,7 @@ public class allPotions : MonoBehaviour
             case 2:
                 //playerController.instance.moveSpeed += 10;
                 if (!TimerStarted) TimerStarted = true;
-                playerController.instance.moveSpeed += 1000;
+                playerController.instance.moveSpeed += vitesse;
                 break;
             default:
                 break;
@@ -45,7 +47,6 @@ public class allPotions : MonoBehaviour
     }
 
     private float _timer = 0f;
-    public float timeEffect = 3f;
 
     void Update()
     {
@@ -55,7 +56,7 @@ public class allPotions : MonoBehaviour
             if (_timer >= timeEffect)
             {
                 Debug.Log("Test et fin");
-                playerController.instance.moveSpeed -= 1000;
+                playerController.instance.moveSpeed -= vitesse;
                 Destroy(gameObject);
             }
         }

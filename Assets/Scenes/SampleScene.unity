@@ -367,9 +367,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afdf0f0764e55e54d91e34db53bf40af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectPotion: 1
-  vitesse: 0
+  effectPotion: 2
+  vitesse: 1000
   heal: 1.5
+  timeEffect: 3
 --- !u!58 &442974087
 CircleCollider2D:
   m_ObjectHideFlags: 0
