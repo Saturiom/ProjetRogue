@@ -6,8 +6,21 @@ public class pickHeal : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Ici ça baise");
-        Debug.Log("Ratio");
-        Destroy(gameObject);
+
+        if (playerController.instance.currentHealth < playerController.instance.maxHealth)
+        {
+            Debug.Log("+1 health points");
+            playerController.instance.currentHealth += 1;
+            if (playerController.instance.currentHealth > playerController.instance.maxHealth)
+            {
+                playerController.instance.currentHealth = playerController.instance.maxHealth;
+            }
+            Destroy(gameObject);
+        }
+        else
+        {
+            Debug.Log("Vous etes full vie");
+        }
+        //Destroy(gameObject);
     }
 }
