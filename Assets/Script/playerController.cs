@@ -10,7 +10,7 @@ public class playerController : MonoBehaviour
 
     [Header("Stat")]
     [SerializeField]
-    float moveSpeed;
+    public float moveSpeed;
     public float currentHealth;
     public float maxHealth;
 
