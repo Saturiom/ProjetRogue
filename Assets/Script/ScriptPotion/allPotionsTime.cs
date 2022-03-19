@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class allPotions : MonoBehaviour
+public class allPotionsTime : MonoBehaviour
 {
     [Header("Effet")]
     public int effectPotion;
-    public float vitesse, heal;
+    public float vitesse;
     [Header("Durée")]
     public float timeEffect;
+    public float healthIncreasePerSecond;
 
 
     private bool TimerStarted = false;
+    private bool TimerStarted2 = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -19,25 +21,14 @@ public class allPotions : MonoBehaviour
         {
             //effet de heal
             case 1:
-                Debug.Log("Vous avez choisi l'effet heal! ");
-                if (playerController.instance.currentHealth < playerController.instance.maxHealth)
-                {
-                    Debug.Log("Vous avez gagnez: " + heal + "Health points");
-                    playerController.instance.currentHealth += heal;
-                    if (playerController.instance.currentHealth > playerController.instance.maxHealth)
-                    {
-                        playerController.instance.currentHealth = playerController.instance.maxHealth;
-                    }
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    Debug.Log("Vous ne pouvez pas ramasser la potion vous avez: " + playerController.instance.currentHealth + "/" + playerController.instance.maxHealth);
-                }
+                Debug.Log("Debut de l'effet de soin");
+                if (!TimerStarted) TimerStarted2 = true;
+
                 break;
             //effet de speed
             case 2:
                 //playerController.instance.moveSpeed += 10;
+                Debug.Log("Debut de l'effet");
                 if (!TimerStarted) TimerStarted = true;
                 playerController.instance.moveSpeed += vitesse;
                 break;
@@ -46,9 +37,17 @@ public class allPotions : MonoBehaviour
         }
     }
 
-    private float _timer = 0f;
+    void playerHeal()
+    {
+        if (TimerStarted2)
+        {
+            //clock
+        }
 
-    void Update()
+    }
+
+
+    void PlayerSpeed()
     {
         if (TimerStarted)
         {
@@ -62,4 +61,15 @@ public class allPotions : MonoBehaviour
         }
     }
 
+    private float _timer = 0f;
+    private float _timer2 = 0f;
+
+
+    void Update()
+    {
+        Debug.Log("CurrentLife: " + playerController.instance.maxHealth);
+        PlayerSpeed();
+        playerHeal();
+
+    }
 }
