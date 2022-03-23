@@ -21,6 +21,9 @@ public class playerController : MonoBehaviour
     public LayerMask whatIsEnemy;
     public float range;
 
+    [Header("Argents")]
+    public int moneyPlayer;
+
 
 
     public static playerController instance;

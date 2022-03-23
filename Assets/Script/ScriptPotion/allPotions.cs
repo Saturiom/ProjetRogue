@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class allPotions : MonoBehaviour
 {
 
     [Header("Effet")]
     public int effectPotion;
+
     public float vitesse, heal;
+    public int money;
+    public Text textMoneyPlayer;
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,9 +26,20 @@ public class allPotions : MonoBehaviour
             case 2:
                 PlayerSpeed();
                 break;
+            case 3:
+                PlayerMoney();
+                break;
             default:
+
                 break;
         }
+    }
+    private void PlayerMoney()
+    {
+        playerController.instance.moneyPlayer += money;
+        Debug.Log("Vous avez: " + playerController.instance.moneyPlayer + "$");
+        textMoneyPlayer.text = playerController.instance.moneyPlayer.ToString();
+        Destroy(gameObject);
     }
 
     private void PlayerHeal()

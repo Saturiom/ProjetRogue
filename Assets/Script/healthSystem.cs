@@ -12,13 +12,13 @@ public class healthSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch(playerController.instance.currentHealth)
+        switch (playerController.instance.currentHealth)
         {
             case 0:
                 life1.sprite = emptyPoint;
@@ -40,28 +40,28 @@ public class healthSystem : MonoBehaviour
                 life2.sprite = fullPoint;
                 life3.sprite = fullPoint;
                 break;
-                        
+
         }
 
-        if(playerController.instance.currentHealth == 2.5)
+        if (playerController.instance.currentHealth == 2.5)
         {
             life1.sprite = fullPoint;
             life2.sprite = fullPoint;
             life3.sprite = halfPoint;
         }
-        if(playerController.instance.currentHealth == 1.5)
+        if (playerController.instance.currentHealth == 1.5)
         {
             life1.sprite = fullPoint;
             life2.sprite = halfPoint;
             life3.sprite = emptyPoint;
         }
-        if(playerController.instance.currentHealth == 0.5)
+        if (playerController.instance.currentHealth == 0.5)
         {
             life1.sprite = halfPoint;
             life2.sprite = emptyPoint;
             life3.sprite = emptyPoint;
         }
 
-        
+
     }
 }
